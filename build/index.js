@@ -17,7 +17,7 @@ server.use('/users', users_1.router);
 server.use('/categories', categories_1.router);
 server.use('/collections', collections_1.router);
 server.use('/items', items_1.router);
-models_1.default.sequelize.sync({ force: true }).then(() => {
+models_1.default.sequelize.sync({ alter: true }).then(() => {
     server.listen(process.env.PORT || config_1.default.PORT, () => {
         console.warn(`Server is running on port: http://localhost:${process.env.PORT || config_1.default.PORT}`);
     });

@@ -5,11 +5,8 @@ import dbConfig from 'config/dbConfig';
 import { TDbConfig } from 'types/index';
 
 const basename = path.basename(__filename);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 const env = 'development';
-console.log('env', env);
 const dataBaseConfig = dbConfig[env as keyof TDbConfig];
-console.log('dataBaseConfig', dataBaseConfig);
 
 const db: any = {};
 

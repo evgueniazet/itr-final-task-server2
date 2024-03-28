@@ -6,11 +6,8 @@ const path = tslib_1.__importStar(require("path"));
 const sequelize_1 = require("sequelize");
 const dbConfig_1 = tslib_1.__importDefault(require("config/dbConfig"));
 const basename = path.basename(__filename);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 const env = 'development';
-console.log('env', env);
 const dataBaseConfig = dbConfig_1.default[env];
-console.log('dataBaseConfig', dataBaseConfig);
 const db = {};
 const sequelize = new sequelize_1.Sequelize(dataBaseConfig.database, dataBaseConfig.username, dataBaseConfig.password, dataBaseConfig);
 fs_1.default.readdirSync(__dirname)

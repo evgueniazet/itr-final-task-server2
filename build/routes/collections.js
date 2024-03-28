@@ -49,7 +49,10 @@ router.post(routes_1.routes.createCollection, (req, res) => tslib_1.__awaiter(vo
 }));
 router.post(routes_1.routes.deleteCollection, (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     const { collectionId } = req.body;
-    const collection = yield models_1.default.collections.findByPk(collectionId);
+    if (typeof collectionId !== 'number' || isNaN(collectionId)) {
+        return res.status(400).json(EErrorMessages_1.EErrorMessages.INVALID_DATA_TYPE);
+    }
+    const collection = yield models_1.default.collections.findOne({ where: { id: collectionId } });
     if (!collection) {
         return res.status(500).json({ error: { message: EErrorMessages_1.EErrorMessages.COLLECTION_NOT_FOUND } });
     }

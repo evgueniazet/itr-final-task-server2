@@ -58,7 +58,11 @@ router.post(routes.createCollection, async (req, res) => {
 router.post(routes.deleteCollection, async (req, res) => {
     const { collectionId } = req.body;
 
-    const collection = await model.collections.findByPk(collectionId);
+    if (typeof collectionId !== 'number' || isNaN(collectionId)) {
+        return res.status(400).json(EErrorMessages.INVALID_DATA_TYPE);
+    }
+
+    const collection = await model.collections.findOne({ where: { id: collectionId } });
 
     if (!collection) {
         return res.status(500).json({ error: { message: EErrorMessages.COLLECTION_NOT_FOUND } });
